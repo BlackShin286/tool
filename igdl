@@ -1,0 +1,266 @@
+from datetime import datetime
+from datetime import date
+import requests
+import os,sys
+import random
+import time
+
+Defaut="\033[0m"    
+Black="\033[0;30m"        
+Red="\033[0;31m"          
+Green="\033[0;32m"        
+Yellow="\033[0;33m"       
+Blue="\033[0;34m"         
+Purple="\033[0;35m"       
+Cyan="\033[0;36m"   
+White = '\033[0;37m' 
+
+#@ Banner
+def terminal():
+    os.system('cls' if os.name=='nt' else 'clear')
+    logo = f'''
+{Green}================================================ 
+{Yellow}██████╗░██╗░░██╗  ███╗░░░███╗███╗░░░███╗░█████╗░
+{Yellow}██╔══██╗██║░██╔╝  ████╗░████║████╗░████║██╔══██╗
+{Yellow}██████╦╝█████═╝░  ██╔████╔██║██╔████╔██║██║░░██║
+{Yellow}██╔══██╗██╔═██╗░  ██║╚██╔╝██║██║╚██╔╝██║██║░░██║
+{Yellow}██████╦╝██║░╚██╗  ██║░╚═╝░██║██║░╚═╝░██║╚█████╔╝
+{Yellow}╚═════╝░╚═╝░░╚═╝  ╚═╝░░░░░╚═╝╚═╝░░░░░╚═╝░╚════╝░
+{Green}================================================
+{Red}[+.+] {White}Họ Và Tên : {Red}Nguyễn Đức Thịnh 
+{Red}[+.+] {White}Ngày Sinh : {Red}02/08/2006
+{Red}[+.+] {White}Nơi Ở : {Red}Hiệp Hòa - Bắc Giang
+{Red}[+.+] {White}Facebook : {Red}fb.com/dthinh.06
+{Red}[+.+] {White}Zalo : {Red}0978.200.223
+{Green}================================================
+'''
+    for X in logo:
+        sys.stdout.write(X)
+        sys.stdout.flush() 
+        time.sleep(0.00125)
+
+class TraoDoiSub:
+    def __init__(self,tktds):
+        self.token = tktds
+    def CheckValidToken(self):
+        a = requests.get('https://traodoisub.com/api/?fields=profile&access_token={}'.format(self.token)).json()
+        try:
+            self.user = a['data']['user']
+            self.xu = a['data']['xu']
+            return self.user,self.xu
+        except:
+            return
+    def CheckCauHinh(self,cookie):
+        self.cookie = cookie #mid=Y499XAALAAFSi9xfyZh0ZWJ1Y5Zd; ig_nrcb=1; ig_did=35C48EA6-2FE8-4EF7-B87D-F9455C04A54A; datr=W32PY9g5zswRIBJJ56pQqmBO; fbm_124024574287414=base_domain=.instagram.com; ds_user_id=55581392090; csrftoken=gkDP1K9cDOTUwmwdU1WrcR9p1l7AmFN3; shbid="13791\05455581392090\0541706108035:01f7882151c3226e475c7a41734fe1430791aebc60c2127b4413284e8c377fcecc713707"; shbts="1674572035\05455581392090\0541706108035:01f7e02c469b66ac1c75fa2df2b28330212b8a61fecd3bfe48a9e1d736e28a45bd04f9b6"; fbsr_124024574287414=C2PpoqBJzFi6hQT_KJPs_L_MGo6FHmy9gquWKMaDF_U.eyJ1c2VyX2lkIjoiMTAwMDgyMjM0ODEyNTk1IiwiY29kZSI6IkFRQkRQejdBeWZOVWRFMDl2cEItQkN2SFZLbXZOcDhEUWhGRzdfZzZrRkNzRHJsVmhQMzB1YzlhVm1YMVlWSFVkSlF3RHZYelFWVjFvNUQzOHgyOGtaWVB6UnpWWjRKTUNDeUZWdE54MmVMQnU1dXhnZ2pGQ3VFb0lDaXR5VTFDdXhwWWxIdUx0aU1VZXlBOTAyUmJhZHZreXFDdlBtZ25PX0dfeWlYQjBiSDJnRTBlaU15ci1WR0g4UnR6aC1OY3gyR3hKQjZ2eThxX0hERzcyeVBSd3VGSGE0MEt3ZVdiR0N5elJsQkNEenhrV24ydDVhS1loeTJBNE5yZ0dpQ0dld1YweDdiWlhVMGJ5T3JRN0lnTWJuQ1RFOUVSOUJDcjR0Q1FzWGlVYkQ0WjVRcnV6b1BEN3g5cFdVenMzWl96NzF4MGxhX2kxTnZ1NHZkbWVZSGprWmNNIiwib2F1dGhfdG9rZW4iOiJFQUFCd3pMaXhuallCQU80bW5pV3B0dHdvelhxdjd5elpBcWxINDliM25UalVxVlJLclU3WG5XVGJaQWNDcUxzN2tYRTNVWEJsQnFaQTN5VFdrSUNiMTVyWHhRd1hFTlU4bWxlZHR4ZGs2Z1FwbEhUdko5ZWNaQVN5MnlVR0ZqWUQwU0haQjFTdFpCNmN2c1BnOVNYZXZaQXA4TElURjFtV1hzUUNaQ1Y0WXJmSDJNYlpCd3M5Y2xrcUYiLCJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTY3NDU3MjAzNX0; sessionid=55581392090%3AQXAq1Z8VgpFQ6I%3A6%3AAYeTUKehddsJpF5g8KvUcVS7Pfryas9SIVW85ZA2DA; rur="PRN\05455581392090\0541706108039:01f7c3593d6909a221fd81478b3c13d119a996f46f896d0fbe950d3f0ef32c1be5239d4f"
+        r = requests.get('https://www.instagram.com',headers={'cookie':self.cookie}).text
+        try:
+            self.username = r.split('username\\":\\"')[1].split('\\')[0]
+            self.idacc = r.split('viewerId\\":\\"')[1].split('\\')[0]
+            if 'success' in requests.get('https://traodoisub.com/api/?fields=instagram_run&id={}&access_token={}'.format(self.username,self.token)).json():
+                return 'Đang Treo Trên Tài Khoản : {} <> ID : {}'.format(self.username,self.idacc)
+            else:
+                return 'Cấu Hình Thất Bại, Vui Lòng Tự Cấu Hình'
+        except:
+            return 'Cookie Không Tồn Tại'
+    def GetFollowJob(self):
+        return requests.get('https://traodoisub.com/api/?fields=instagram_follow&access_token={}'.format(self.token)).json()
+    def GetLikeJob(self):
+        return requests.get('https://traodoisub.com/api/?fields=instagram_like&access_token={}'.format(self.token)).json()
+class Instagram:
+    def __init__(self,cookie):
+        self.cookie = cookie
+    def CheckValidCookie(self):
+        self.cookie = cookie #mid=Y499XAALAAFSi9xfyZh0ZWJ1Y5Zd; ig_nrcb=1; ig_did=35C48EA6-2FE8-4EF7-B87D-F9455C04A54A; datr=W32PY9g5zswRIBJJ56pQqmBO; fbm_124024574287414=base_domain=.instagram.com; ds_user_id=55581392090; csrftoken=gkDP1K9cDOTUwmwdU1WrcR9p1l7AmFN3; shbid="13791\05455581392090\0541706108035:01f7882151c3226e475c7a41734fe1430791aebc60c2127b4413284e8c377fcecc713707"; shbts="1674572035\05455581392090\0541706108035:01f7e02c469b66ac1c75fa2df2b28330212b8a61fecd3bfe48a9e1d736e28a45bd04f9b6"; fbsr_124024574287414=C2PpoqBJzFi6hQT_KJPs_L_MGo6FHmy9gquWKMaDF_U.eyJ1c2VyX2lkIjoiMTAwMDgyMjM0ODEyNTk1IiwiY29kZSI6IkFRQkRQejdBeWZOVWRFMDl2cEItQkN2SFZLbXZOcDhEUWhGRzdfZzZrRkNzRHJsVmhQMzB1YzlhVm1YMVlWSFVkSlF3RHZYelFWVjFvNUQzOHgyOGtaWVB6UnpWWjRKTUNDeUZWdE54MmVMQnU1dXhnZ2pGQ3VFb0lDaXR5VTFDdXhwWWxIdUx0aU1VZXlBOTAyUmJhZHZreXFDdlBtZ25PX0dfeWlYQjBiSDJnRTBlaU15ci1WR0g4UnR6aC1OY3gyR3hKQjZ2eThxX0hERzcyeVBSd3VGSGE0MEt3ZVdiR0N5elJsQkNEenhrV24ydDVhS1loeTJBNE5yZ0dpQ0dld1YweDdiWlhVMGJ5T3JRN0lnTWJuQ1RFOUVSOUJDcjR0Q1FzWGlVYkQ0WjVRcnV6b1BEN3g5cFdVenMzWl96NzF4MGxhX2kxTnZ1NHZkbWVZSGprWmNNIiwib2F1dGhfdG9rZW4iOiJFQUFCd3pMaXhuallCQU80bW5pV3B0dHdvelhxdjd5elpBcWxINDliM25UalVxVlJLclU3WG5XVGJaQWNDcUxzN2tYRTNVWEJsQnFaQTN5VFdrSUNiMTVyWHhRd1hFTlU4bWxlZHR4ZGs2Z1FwbEhUdko5ZWNaQVN5MnlVR0ZqWUQwU0haQjFTdFpCNmN2c1BnOVNYZXZaQXA4TElURjFtV1hzUUNaQ1Y0WXJmSDJNYlpCd3M5Y2xrcUYiLCJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTY3NDU3MjAzNX0; sessionid=55581392090%3AQXAq1Z8VgpFQ6I%3A6%3AAYeTUKehddsJpF5g8KvUcVS7Pfryas9SIVW85ZA2DA; rur="PRN\05455581392090\0541706108039:01f7c3593d6909a221fd81478b3c13d119a996f46f896d0fbe950d3f0ef32c1be5239d4f"
+        r = requests.get('https://www.instagram.com',headers={'cookie':self.cookie}).text
+        try:
+            self.username = r.split('username\\":\\"')[1].split('\\')[0]
+            self.idacc = r.split('viewerId\\":\\"')[1].split('\\')[0]
+            return self.username,self.idacc
+        except:
+            return 'Cookie Không Chính Xác'
+    def ApiFollowSingal(self,idjob):
+        self.csrftoken = self.cookie.split('csrftoken=')[1].split(';')[0]
+        self.idjob = idjob
+        headers = {
+            'authority': 'www.instagram.com',
+            'accept': '*/*',
+            'accept-language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
+            'content-type': 'application/x-www-form-urlencoded',
+            'cookie': self.cookie,
+            'origin': 'https://www.instagram.com',
+            'referer': 'https://www.instagram.com/',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+            'viewport-width': '734',
+            'x-asbd-id': '198387',
+            'x-csrftoken': self.csrftoken,
+            'x-ig-app-id': '936619743392459',
+        }
+        response = requests.post(f'https://www.instagram.com/api/v1/web/friendships/{self.idjob}/follow/', headers=headers).text
+        return 'Thành Công'
+    def ApiLikeSingal(self,idjob):
+        self.csrftoken = self.cookie.split('csrftoken=')[1].split(';')[0]
+        self.idjob = idjob
+        headers = {
+            'authority': 'www.instagram.com',
+            'accept': '*/*',
+            'accept-language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
+            'content-type': 'application/x-www-form-urlencoded',
+            'cookie': self.cookie,
+            'origin': 'https://www.instagram.com',
+            'referer': 'https://www.instagram.com/',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+            'viewport-width': '734',
+            'x-asbd-id': '198387',
+            'x-csrftoken': self.csrftoken,
+            'x-ig-app-id': '936619743392459', 
+        }
+        response = requests.post(f'https://www.instagram.com/api/v1/web/likes/{self.idjob}/like/', headers=headers).text
+        return 'Thành Công'
+#Login TraoDoiSub
+terminal()
+while True:
+    tktds = input(f'{Cyan}Token TraoDoiSub.Com : ')
+    t = TraoDoiSub(tktds).CheckValidToken()
+    if t == None:
+        print(f'{Red}Token Không Tồn Tại Hoặc Sai, Vui Lòng Thử Lại')
+    else:
+        line = f'{Green}================================================'
+        for z in line:
+            sys.stdout.write(z)
+            sys.stdout.flush() 
+            time.sleep(0.00125)
+        print('{}\nLogin Thành Công : {} <> {}'.format(Yellow,t[0],t[1]))
+        line = f'{Green}================================================'
+        for z in line:
+            sys.stdout.write(z)
+            sys.stdout.flush() 
+            time.sleep(0.00125)
+        break
+#Login Instagram
+while True:
+    cookie = input(f'\n{Cyan}Cookie Instagram : ')
+    z = Instagram(cookie=cookie).CheckValidCookie()
+    if z=='Cookie Không Chính Xác':
+        line = f'{Green}================================================'
+        for n in line:
+            sys.stdout.write(n)
+            sys.stdout.flush() 
+            time.sleep(0.00125)
+        print(f'{Red}\nCookie Có Vẻ Sai Rồi, Thử Lại Đi')
+    else:
+        line = f'{Green}================================================'
+        for n in line:
+            sys.stdout.write(n)
+            sys.stdout.flush() 
+            time.sleep(0.00125)
+        print('\n{}Login Thành Công Tài Khoản : {}'.format(Yellow,z[0]))
+        time.sleep(1.5)
+        print(f'{Blue}Đang Thực Hiện Check Cấu Hình.',end='\r')
+        time.sleep(0.5)
+        print(f'{Blue}Đang Thực Hiện Check Cấu Hình..',end='\r')
+        time.sleep(0.5)
+        print(f'{Blue}Đang Thực Hiện Check Cấu Hình...')
+        t = TraoDoiSub(tktds).CheckCauHinh(cookie=cookie)
+        if 'Đang Treo Trên Tài Khoản' in t:
+            line = f'{Green}================================================'
+            for z in line:
+                sys.stdout.write(z)
+                sys.stdout.flush() 
+                time.sleep(0.00125)
+            print('\n'+t)
+            break
+        elif 'Cấu Hình Thất Bại' in t:
+            line = f'{Green}================================================'
+            for z in line:
+                sys.stdout.write(z)
+                sys.stdout.flush() 
+                time.sleep(0.00125)
+            print('\n'+t)
+        else:
+            line = f'{Green}================================================'
+            for z in line:
+                sys.stdout.write(z)
+                sys.stdout.flush() 
+                time.sleep(0.00125)
+            print('\n'+t)
+time.sleep(2.5)
+#Hàm Làm Job
+def MainFollowJob(tktds,cookie):
+    dem=1
+    while True:
+        try:
+            for i in TraoDoiSub(tktds).GetFollowJob()['data']:
+                job = i['id'] #1319701157_E3XDRUYW2GBLCVGL3AT1
+                idjob = job.split('_')[0] #1319701157
+                userjob = i['link'].split('https://www.instagram.com/')[1] #zuck
+                Instagram(cookie).ApiFollowSingal(idjob)
+                time.sleep(1)
+                requests.get('https://traodoisub.com/api/coin/?type=INS_FOLLOW_CACHE&id={}&access_token={}'.format(job,tktds))
+                print('[{}] Follow Success : {} | Chờ Nhận : +800 Xu'.format(dem,userjob))
+                dem+=1
+                for x in range(delay,-1,-1):
+                    print(f'Đang Chờ {x} Giây...',end='\r')
+                    time.sleep(1)
+        except:
+            print('Đang Hết Job, Vui Lòng Chờ Trong 2 Giây...',end='\r')
+            time.sleep(2)
+def MainLikeJob(tktds,cookie):
+    dem=1
+    while True:
+        try:
+            for i in TraoDoiSub(tktds).GetLikeJob()['data']:
+                job = i['id'] #1319701157_E3XDRUYW2GBLCVGL3AT1
+                idjob = job.split('_')[0] #1319701157
+                userjob = i['link'].split('https://www.instagram.com/')[1] #zuck
+                Instagram(cookie).ApiLikeSingal(idjob)
+                time.sleep(1)
+                requests.get('https://traodoisub.com/api/coin/?type=INS_LIKE_CACHE&id={}&access_token={}'.format(job,tktds))
+                print('[{}] LIKE Success : {} | Chờ Nhận : +500 Xu'.format(dem,userjob))
+                dem+=1
+                for x in range(delay,-1,-1):
+                    print(f'Đang Chờ {x} Giây...',end='\r')
+                    time.sleep(1)
+        except:
+            print('Đang Hết Job, Vui Lòng Chờ Trong 2 Giây...',end='\r')
+            time.sleep(2)
+#Dien Delay + Job
+terminal()
+delay = int(input('Vui Lòng Điền Delay : '))
+line = f'{Green}================================================'
+for n in line:
+    sys.stdout.write(n)
+    sys.stdout.flush() 
+    time.sleep(0.00125)
+print('\nCác Nhiệm Vụ Có Trong Tool:')
+time.sleep(1)
+print('1.Follow Instagram\n2.Like Instagram\n3.Random Job Instagram')
+typejob = int(input('Nhập Job : '))
+line = f'{Green}================================================\n'
+for n in line:
+    sys.stdout.write(n)
+    sys.stdout.flush() 
+    time.sleep(0.00125)
+if typejob==1:
+    MainFollowJob(tktds,cookie)
+elif typejob==2:
+    MainLikeJob(tktds,cookie)
+else:
+    while True:
+        if random.randint(1,2)==1:
+            MainFollowJob(tktds,cookie)
+        else:
+            MainLikeJob(tktds,cookie)
